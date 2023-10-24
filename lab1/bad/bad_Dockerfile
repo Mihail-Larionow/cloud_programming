@@ -1,0 +1,13 @@
+FROM ubuntu:latest
+
+MAINTAINER LINM 
+LABEL version="bad"
+
+RUN apt-get update  && \
+	apt-get install -y python3
+
+COPY script.py /home/script.py
+
+ENV PERSON_NAME="LINM"
+WORKDIR /home
+ENTRYPOINT ["python3", "./script.py"]
