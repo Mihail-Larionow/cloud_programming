@@ -1,0 +1,16 @@
+services:
+  lab1:
+    image: "postgres:14"
+    container_name: 'my_container'
+    build:
+      context: .
+      dockerfile: no-docker-file
+    ports:
+      - 5432:5432
+    env_file:
+      ./config.env
+    volumes:
+      - lab1_volume:/var/lib/postgresql/data
+
+volumes:
+  lab1_volume: { }
