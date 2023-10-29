@@ -164,7 +164,7 @@ Volume **lab1_volume** определяется в секции volumes конф
 
 #### Результат запуска.
 
-<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab1/task_star/img/img.png"/></p>
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab1/images/img.png"/></p>
 
 ## Вывод
 В процессе выполнения данной лабораторной работы было успешно разработано приложение, способное принимать аргументы из командной строки и сохранять изменения в базу данных внутри контейнера Docker. 
