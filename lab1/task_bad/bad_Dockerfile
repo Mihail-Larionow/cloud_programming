@@ -1,0 +1,16 @@
+FROM python:latest
+
+MAINTAINER LINM 
+LABEL version="bad"
+
+RUN apt-get update
+
+RUN mkdir webserver
+WORKDIR /home/webserver/
+
+ADD ./web-server/index.html index.html
+ADD ./web-server/server.py server.py
+ADD ./web-server/serverup.png serverup.png
+
+ENTRYPOINT ["python3", "server.py"]
+EXPOSE 8080

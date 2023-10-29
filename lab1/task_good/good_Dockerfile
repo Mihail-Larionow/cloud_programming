@@ -1,0 +1,11 @@
+FROM python:alpine
+
+MAINTAINER LINM 
+LABEL version="good"
+
+WORKDIR /home/webserver/
+
+COPY ./web-server .
+
+ENTRYPOINT ["python3", "server.py"]
+EXPOSE 8080

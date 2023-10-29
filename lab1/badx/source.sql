@@ -1,6 +1,0 @@
-CREATE TABLE items(
-	ItemId INTEGER NOT NULL PRIMARY KEY,
-	ItemName VARCHAR(50) NOT NULL,
-	ItemPrice INTEGER NOT NULL,
-	ItemDescription VARCHAR(300)
-);
