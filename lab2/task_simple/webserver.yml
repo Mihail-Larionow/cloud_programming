@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: webserver
+  labels:
+    app: webserver
+
+spec:
+  selector:
+    matchLabels:
+      app: webserver
+
+  replicas: 2
+
+  template:
+    metadata:
+      name: webserver
+      labels:
+        app: webserver
+    spec:
+      containers:
+        - name: webserver
+          image: larionow/webserver
