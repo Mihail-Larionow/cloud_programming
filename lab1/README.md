@@ -14,7 +14,7 @@
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab1/images/web-server.PNG"/></p>
 
-Хоть они оба выполняют одну и ту же функцию, но разница между количеством используемой памяти образов очевидна.
+Хоть они оба выполняют одну и ту же функцию, разница между количеством используемой памяти образов очевидна.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab1/images/images.PNG"/></p>
 
