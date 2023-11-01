@@ -1,12 +1,14 @@
-## Лабораторная работа №2 
+## Лабораторная работа №2 "Работа с Kubernetes"
 
 ### Цель работы
+Необходимо поднять локально kubernetes кластер, в котором будет развернут сервер.
 
 ### Задачи
+1. Используя 2-3 ресурса kubernetes, поднять кластер minikube.
 
 ## Ход работы
 
-Дя успешной работы необходимо, чтобы были установлены dokcer, kubectl и minikube.
+Для успешной работы необходимо, чтобы были установлены dokcer, kubectl и minikube.
 
 Запускаем minikube при помощи команды:
 
@@ -66,10 +68,13 @@ spec:
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/service-create.PNG"/></p>
 
-Переходим через minikube service
+Переходим через minikube service:
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/web-server-start.PNG"/></p>
 
 Все работает!
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/web-server-work.PNG"/></p>
+
+## Вывод
+В ходе лабораторной работы мы локально подняли kubernetes кластер minikub, в котором развернули http сервер. 
