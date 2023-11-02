@@ -1,14 +1,14 @@
-## Лабораторная работа №2 "Работа с Kubernetes"
+## Лабораторная работа №2 "Работа с K8s"
 
 ### Цель работы
-Необходимо поднять локально kubernetes кластер, в котором будет развернут сервер.
+Необходимо поднять локально _kubernetes_ кластер, в котором будет развернут сервер.
 
 ### Задачи
-1. Используя 2-3 ресурса k8s, поднять кластер minikube.
+1. Используя 2-3 ресурса _k8s_, поднять кластер _minikube_.
 
 ## Ход работы
 
-Для успешной работы необходимо, чтобы в системе были установлены docker, kubectl и minikube.
+Для успешной работы необходимо, чтобы в системе были установлены _docker_, _kubectl_ и _minikube_.
 
 Запускаем minikube при помощи команды:
 
@@ -18,9 +18,9 @@ minikube start --driver=docker
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/minikube.PNG"/></p>
 
-В миникубе мы попробуем запустить http-сервер, который был поднят в прошлой лабораторной работе. _(P.S. Для удобства образ сервера был выложен на DockerHub.)_
+В миникубе мы попробуем запустить http-сервер, который был поднят в прошлой лабораторной работе. _(P.S. Для удобства образ сервера был выложен на DockerHub)_
 
-Создаем:
+Создадим файл webserver.yml:
 
 ```
 apiVersion: apps/v1
@@ -49,12 +49,13 @@ spec:
           image: larionow/webserver
 ```
 
+В поле _kind_ указан ресурс _Deployment_, который управляет состоянием развертывания подов, описанное в манифесте, а также следит за удалением и созданием их экземпляров.  
+
+Помимо этого, в манифесте в поле _replicas_ мы указали число 2, это означает, что в нашем кластере должно быть создано 2 экземпляра объекта.
+
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/web-server-create.PNG"/></p>
 
-В поле _kind_ был указан ресурс _Deployment_, который управляет состоянием развертывания подов, описанное в манифесте, а также следит за удалением и созданием их экземпляров.  
-Помимо этого, в манифесте мы указали, что
-
-Создаем сервис:
+Создадим service.yml:
 
 ```
 apiVersion: v1
@@ -64,7 +65,7 @@ metadata:
   name: service
 
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - targetPort: 8080
       port: 8080
@@ -73,19 +74,17 @@ spec:
     app: webserver
 ```
 
-<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/service-create.PNG"/></p>
-
 В качестве сервиса, мы использовали _LoadBalancer_, который распределяет нагрузку сети между нашими репликами, а также обеспечивает высокую доступность и маштабируемость.  
 
 Мы могли, конечно, использовать _NodePort_, но данный сервис используется скорее для тестирования или разработки. Он, так сказать, внутренний балансировщик нагрузки, когда _LoadBalancer_ — внешний.
 
-При помощи команды _minikube service_ находим адрес нашего сервера:
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/service-create.PNG"/></p>
 
-<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/web-server-start.PNG"/></p>
-
-Все работает!
+Перейдем по адресу и проверим работу нашего сервера.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/web-server-work.PNG"/></p>
+
+Успех! 
 
 ## Вывод
 В ходе лабораторной работы мы локально подняли kubernetes кластер minikub, в котором развернули http сервер. 
