@@ -18,7 +18,7 @@ minikube start --driver=docker
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/minikube.PNG"/></p>
 
-В миникубе мы попробуем запустить http-сервер, который был поднят в прошлой лабораторной работе. _(P.S. Для удобства образ сервера был выложен на DockerHub)_
+В миникубе мы попробуем запустить http-сервер, который был поднят в прошлой лабораторной работе. _(P.S. Для удобства образ сервера был выложен на [DockerHub](https://hub.docker.com/repository/docker/larionow/webserver/general))_
 
 Создадим файл webserver.yml:
 
