@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: webserver-service
+  namespace: webserver
+
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: webserver
+
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: webserver-deployment
+  namespace: webserver
+  labels:
+    app: webserver
+
+spec:
+  selector:
+    matchLabels:
+      app: webserver
+
+  replicas: 2
+
+  template:
+    metadata:
+      name: webserver-pod
+      labels:
+        app: webserver
+
+    spec:
+      containers:
+        - name: webserver-container
+          image: larionow/webserver
