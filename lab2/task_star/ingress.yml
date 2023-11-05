@@ -2,10 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 
 metadata:
-  name: local-ingress
+  name: webserver-ingress
   namespace: webserver
 
 spec:
+  ingressClassName: nginx
   tls:
     - hosts:
         - minikube.webserver.ru
@@ -15,10 +16,10 @@ spec:
     - host: minikube.webserver.ru
       http:
         paths:
-          - path: /testpath
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: webserver-service
                 port:
-                  number: 8080
+                  number: 80
