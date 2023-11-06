@@ -18,7 +18,7 @@ minikube start --driver=docker
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/minikube.PNG"/></p>
 
-В миникубе мы попробуем запустить http-сервер, который был поднят в прошлой лабораторной работе. _(P.S. Для удобства образ сервера был выложен на [DockerHub](https://hub.docker.com/repository/docker/larionow/webserver/general))_
+В миникубе мы попробуем запустить http-сервер, который был поднят в прошлой лабораторной работе. _(P.S. Для удобства образ сервера был выложен на [DockerHub](https://hub.docker.com/r/larionow/webserver))_
 
 Создадим файл webserver.yml:
 
@@ -87,8 +87,103 @@ spec:
 Успех! 
 
 ## Вывод
-В ходе лабораторной работы мы локально подняли кластер _minikube_, в котором развернули http-сервер. 
+В ходе лабораторной работы мы локально подняли кластер _minikube_, в котором развернули раннее созданный http-сервер. 
 
 # ⭐
 
-_Скоро здесь точно что-то появится!_
+### Цель работы
+
+### Задачи
+
+## Ход работы
+В этот раз, в качестве запускаемого сервиса, было решено использовать уже готовое решение — [httpd](https://hub.docker.com/_/httpd).  
+
+Чтобы изолировать и обезопасить ресурсы, было создано пространство имён _webserver_, описанное в манифесте namespace.yml.
+
+```
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: webserver
+  labels:
+    app: webserver
+```
+
+Для управления внешним доступом к приложениям в кластере был создан ресурс _Ingress_.
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: webserver-ingress
+  namespace: webserver
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: minikube.webserver.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webserver-service
+                port:
+                  number: 80
+```
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-namespace.PNG"/></p>
+
+В качестве контроллера, мы использовали _Ingress Nginx Controller_, который подключили к кластеру при помощи команды:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+```
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/nginx-ingress.PNG"/></p>
+
+Помимо этого, был подключен _cert-manager_:
+
+```
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v0.12.0/cert-manager.yaml
+```
+
+При помощи утилиты openssl мы выпустили самоподписанный сертификат.
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/certificate-create.PNG"/></p>
+
+Затем, используя данный сертификат, мы создали секрет.
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/secret.PNG"/></p>
+
+После чего, добавили информацию о нем в ingress.yml.
+
+```
+  tls:
+    - hosts:
+        - minikube.webserver.ru
+      secretName: webserver-tls
+```
+
+Также, для верного определения хоста, в файле _/etc/hosts_ была добавлена строка:
+
+```
+$(minikube ip) minikube.webserver.ru
+```
+
+Применив все манифесты, в браузере попробуем перейти по адресу https://minikube.webserver.ru.
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-warning.PNG"/></p>
+
+Как мы видим, система нас предупреждает о том, что посещение данного сайта может быть небезопасно. Так происходит, потому что мы используем самоподписанный сертификат, а по умолчанию Mozilla Firefox не доверяет таким сертификатам.
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/certificate.PNG"/></p>
+
+Согласшаемся с рисками (или добавляем наш сертификат в настройках браузера) и видим, что все успешно работает.
+
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-working.PNG"/></p>
+
+## Вывод
