@@ -145,12 +145,6 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/nginx-ingress.PNG"/></p>
 
-Помимо этого, был подключен _cert-manager_:
-
-```
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v0.12.0/cert-manager.yaml
-```
-
 При помощи утилиты openssl мы выпустили самоподписанный сертификат.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/certificate-create.PNG"/></p>
