@@ -196,7 +196,7 @@ $(minikube ip) minikube.webserver.ru
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-warning.PNG"/></p>
 
-Система предупредила о том, что посещение данного сайта может быть небезопасно. Так происходит, потому что был использован самоподписанный сертификат, а по умолчанию Mozilla Firefox и многие другие современные браущ=зеры не доверяют таким сертификатам.
+Система предупредила о том, что посещение данного сайта может быть небезопасно. Так происходит, потому что был использован самоподписанный сертификат, а по умолчанию Mozilla Firefox и многие другие современные браузеры не доверяют таким сертификатам.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/certificate.PNG"/></p>
 
