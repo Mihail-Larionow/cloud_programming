@@ -192,7 +192,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 $(minikube ip) minikube.webserver.ru
 ```
 
-Применив все манифесты, в браузере была выполнена попытка перехода по адресу https://minikube.webserver.ru.
+После применения всех манифестов, в браузере была выполнена попытка перехода по адресу https://minikube.webserver.ru.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-warning.PNG"/></p>
 
@@ -204,8 +204,9 @@ $(minikube ip) minikube.webserver.ru
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-working.PNG"/></p>
 
-Успех!  
-А чтобы и вы смогли получить такой же результат, вам необходимо запустить _minikube_, скачать данный репозиторий и выполнить следующие команды:
+Успех!
+
+Чтобы получить такой же результат, необходимо запустить _minikube_, скачать данный репозиторий и выполнить следующие команды:
 
 ```
 kubectl apply -f namespace.yml
@@ -215,7 +216,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl create secret tls webserver-tls --cert=tls.crt --key=tls.key
 ```
 
-Не забудьте также добавить информацию в _/etc/hosts_ и включить addon _ingress_ в _minikube_, если он у вас не включен.
+Кроме того, важно добавить информацию в _/etc/hosts_ и включить addon _ingress_ в _minikube_, если он не включен.
 
 ## Вывод
 
