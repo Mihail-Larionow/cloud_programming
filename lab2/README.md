@@ -84,7 +84,14 @@ spec:
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/web-server-work.PNG"/></p>
 
-Успех! 
+Успех!  
+А чтобы и вы смогли получить данный результат, вам необходимо запустить _minikube_, скачать данный репозиторий и выполнить следующие команды:
+
+```
+kubectl create -f webserver.yml
+kubectl create -f service.yml
+minikube service service
+```
 
 ## Вывод
 В ходе лабораторной работы мы локально подняли кластер _minikube_, в котором развернули раннее созданный http-сервер. 
@@ -179,5 +186,18 @@ $(minikube ip) minikube.webserver.ru
 Согласшаемся с рисками (или добавляем наш сертификат в настройках браузера) и видим, что все успешно работает.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-working.PNG"/></p>
+
+Успех!  
+А чтобы и вы смогли получить данный результат, вам необходимо запустить _minikube_, скачать данный репозиторий и выполнить следующие команды:
+
+```
+kubectl apply -f namespace.yml
+kubectl apply -f webserver.yml
+kubectl apply -f ingress.yml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+kubectl create secret tls webserver-tls --cert=tls.crt --key=tls.key
+```
+
+Не забудьте также добавить информацию в _/etc/hosts_ и включить аддон _ingress_ в _minikube_, если он у вас не включен.
 
 ## Вывод
