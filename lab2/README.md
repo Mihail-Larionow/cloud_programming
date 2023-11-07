@@ -200,7 +200,7 @@ $(minikube ip) minikube.webserver.ru
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/certificate.PNG"/></p>
 
-Была выбрана опция принятия рисков, после чего сайт успешно открылся. Также можно было добавить самоподписанный сертификат в подтвержденные настройках браузера.
+Была выбрана опция принятия рисков, после чего сайт успешно открылся. Также можно было добавить самоподписанный сертификат в подтвержденные в настройках браузера.
 
 <p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab2/images/webserver-working.PNG"/></p>
 
