@@ -69,7 +69,7 @@ spec:
   ports:
     - targetPort: 8080
       port: 8080
-      nodePort: 30008
+      nodePort: 30808
   selector:
     app: webserver
 ```
