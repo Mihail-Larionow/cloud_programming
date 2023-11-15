@@ -5,7 +5,6 @@ on:
       - main
     paths:
       - ".github/workflows/**"
-      - "lab1/**"
       - "lab3/**"
 
 jobs:
@@ -14,17 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          node-version: 16
 
       - name: Build Docker image
-        run: docker build -t web-server-image:latest ./
-        working-directory: ./lab1/
+        run: build -t random-app lab3/task_simple/
 
       - name: Save Docker image
-        run: docker save web-server-image:latest -o ./task_simple/build.tar
-        working-directory: ./lab3/
+        run: docker save web-server-image:latest -o lab3/task_simple/build.tar
 
       - name: List files in build and save to build.txt
-        run: ls -R ./task_simple/ > ./task_simple/build.txt
-        working-directory: ./lab3/
+        run: ls -R lab3/task_simple/ > lab3/task_simple/build.txt
