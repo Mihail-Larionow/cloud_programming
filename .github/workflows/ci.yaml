@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - ".github/workflows/**"
+      - "lab1/**"
+      - "lab3/**"
 
 jobs:
   build:
@@ -10,14 +14,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          path: lab1/task-good
 
       - name: Build Docker image
-        run: docker build -t web-server-image:latest ./good_Dockerfile
+        run: docker build -t web-server-image:latest ./
+        with:
+          context: "./lab1/"
 
       - name: Save Docker image
-        run: docker save web-server-image:latest -o ../../lab3/task_simple/build.tar
+        run: docker save web-server-image:latest -o ./task_simple/build.tar
+        with:
+          context: "./lab3/"
 
       - name: List files in build and save to build.txt
-        run: ls -R ../../lab3/task_simple/ > ../../lab3/task_simple/build.txt
+        run: ls -R ./task_simple/ > ./task_simple/build.txt
+        with:
+          context: "./lab3/"
