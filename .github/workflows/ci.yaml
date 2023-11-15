@@ -1,0 +1,21 @@
+name: CI Pipeline
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t web-server-image:latest ./lab1/task-good/
+
+      - name: Save Docker image
+        run: docker save web-server-image:latest -o ./lab3/task_simple/build.tar
+
+      - name: List files in build and save to build.txt
+        run: ls -R ./lab3/task_simple/ > ./lab3/task_simple/build.txt
