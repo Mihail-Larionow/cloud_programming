@@ -14,7 +14,7 @@ jobs:
           path: lab1/task-good
 
       - name: Build Docker image
-        run: docker build -t web-server-image:latest ./
+        run: docker build -t web-server-image:latest ./good_Dockerfile
 
       - name: Save Docker image
         run: docker save web-server-image:latest -o ../../lab3/task_simple/build.tar
