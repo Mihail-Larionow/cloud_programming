@@ -17,15 +17,12 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t web-server-image:latest ./
-        with:
-          context: "./lab1/"
+        working-directory: ./lab1/
 
       - name: Save Docker image
         run: docker save web-server-image:latest -o ./task_simple/build.tar
-        with:
-          context: "./lab3/"
+        working-directory: ./lab3/
 
       - name: List files in build and save to build.txt
         run: ls -R ./task_simple/ > ./task_simple/build.txt
-        with:
-          context: "./lab3/"
+        working-directory: ./lab3/
