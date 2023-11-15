@@ -1,6 +1,6 @@
-FROM python:3.8
+FROM python:3.9
 
 COPY program.py /app/
 RUN pip install random
 
-CMD ["python", "/program.py"]
+CMD ["python", "/app/program.py"]
