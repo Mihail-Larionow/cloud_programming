@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: build -t random-app lab3/task_simple/
+        run: docker build -t random-app lab3/task_simple/
 
       - name: Save Docker image
-        run: docker save web-server-image:latest -o lab3/task_simple/build.tar
+        run: docker save random-app:latest -o lab3/task_simple/build.tar
 
       - name: List files in build and save to build.txt
         run: ls -R lab3/task_simple/ > lab3/task_simple/build.txt
