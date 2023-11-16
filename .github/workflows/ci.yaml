@@ -4,11 +4,10 @@ on:
     branches:
       - main
     paths:
-      - ".github/workflows/**"
       - "lab3/**"
 
 jobs:
-  build:
+  build_and_run:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -19,3 +18,22 @@ jobs:
 
       - name: Run lab3 docker image
         run: docker run lab3-app
+
+  build_and_push_to_dockerhub:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+            context: lab3/task_simple
+            push: true
+            tags: lnikm/cloud_programming:latest
