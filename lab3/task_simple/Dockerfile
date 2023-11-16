@@ -1,6 +1,5 @@
-FROM python:3.9
+FROM ubuntu:20.04
 
-COPY program.py /app/
-RUN pip install random
+RUN echo "Build result" > build.txt
 
-CMD ["python", "/app/program.py"]
+CMD ["cat", "build.txt"]
