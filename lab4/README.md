@@ -26,7 +26,7 @@ kubectl expose service prometheus-server --type=NodePort --target-port=9090 --na
 minikube service prometheus-server-np
 ```
 
-<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab3/images/start_prometheus.PNG"/></p>
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab4/images/start_prometheus.PNG"/></p>
 
 #### 2. Установка Grafana
 Добавим репозиторий Grafana. 
@@ -48,12 +48,12 @@ kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana
 minikube service grafana-np
 ```
 
-<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab3/images/start_grafana.PNG"/></p>
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab4/images/start_grafana.PNG"/></p>
 
 #### 3. Настройка
 Через <font color=aqua>_Connections > Datasource_</font> свяжем Grafana с Prometheus.  
 Результат.
 
-<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab3/images/working_grafana.PNG"/></p>
+<p align="center"><img src="https://github.com/Mihail-Larionow/cloud_programming/blob/main/lab4/images/working_grafana.PNG"/></p>
 
 ## Вывод
